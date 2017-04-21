@@ -9,10 +9,11 @@
 <h3>User Registration</h3>
 
 <form action="#" th:action="@{/user/register}" th:object="${user}" method="post">
+    <input type="hidden" th:field="*{id}" />
     <p>Forename: </p><input type="text" th:field="*{forename}"/>
     <p>Surname: </p><input type="text" th:field="*{surname}"/>
     <p>Password: </p><input type="text" th:field="*{password}"/>
-    <p></p><input type="submit" value="register"/>
+    <p></p><input type="submit" value="Register"/>
 </form>
 
 </body>
