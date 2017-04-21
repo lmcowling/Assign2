@@ -5,10 +5,7 @@ import com.demo.spring.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * Created by web on 19/04/17.
@@ -35,5 +32,16 @@ public class UserController
     {
         userService.save(user);
         return "redirect:/";
+    }
+
+    @RequestMapping(value = "/delete/{user}", method = RequestMethod.GET)
+    @ResponseBody
+    public String delete(@PathVariable User user)
+    {
+        String name = user.getForename()+" "+user.getSurname();
+
+        userService.delete(user);
+
+        return name;
     }
 }
