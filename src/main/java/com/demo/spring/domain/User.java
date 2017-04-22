@@ -1,12 +1,31 @@
 package com.demo.spring.domain;
 
+<<<<<<< Updated upstream
+=======
+import org.hibernate.validator.constraints.NotEmpty;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+>>>>>>> Stashed changes
 /**
  * Created by Liam on 19/04/17.
  */
 public class User
 {
+<<<<<<< Updated upstream
+=======
+    @Id @GeneratedValue(strategy = GenerationType.AUTO)
+    Long id;
+
+    @NotEmpty
+>>>>>>> Stashed changes
     String forename;
+    @NotEmpty
     String surname;
+    @NotEmpty
     String password;
 
     public String getForename()
