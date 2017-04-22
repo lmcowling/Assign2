@@ -1,11 +1,15 @@
 package com.demo.spring.controller;
 
+import com.demo.spring.domain.LoginForm;
 import com.demo.spring.domain.User;
 import com.demo.spring.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 /**
  * Created by web on 19/04/17.
@@ -28,9 +32,41 @@ public class UserController
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
 //    @ResponseBody
-    public String register(Model model, @ModelAttribute("user") User user)
+    public String register(Model model, @Valid @ModelAttribute("user") User user, BindingResult bindingResult)
     {
+        if(bindingResult.hasErrors())
+        {
+            model.addAttribute("user", user);
+            model.addAttribute("message", "Please fill in all sections of the form");
+            return "register";
+        }
         userService.save(user);
+        return "redirect:/";
+    }
+
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public String loginView(Model model)
+    {
+        LoginForm user = new LoginForm();
+        model.addAttribute("user", user);
+        return "login";
+    }
+
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+//    @ResponseBody
+    public String login(Model model, @Valid @ModelAttribute("user") LoginForm user, BindingResult bindingResult)
+    {
+        if(bindingResult.hasErrors())
+        {
+            model.addAttribute("user", user);
+            model.addAttribute("message", "Please fill in all sections of the form");
+            return "login";
+        }
+        if(userService.validateLogin(user)==null || userService.validateLogin(user).size()==0)
+        {
+            model.addAttribute("user", user);
+            model.addAttribute("message", "Username or Password are incorrect");
+        }
         return "redirect:/";
     }
 

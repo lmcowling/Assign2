@@ -1,5 +1,6 @@
 package com.demo.spring.service;
 
+import com.demo.spring.domain.LoginForm;
 import com.demo.spring.domain.User;
 import com.demo.spring.domain.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,4 +28,9 @@ public class UserService
     }
 
     public void delete(User user) {userRepository.delete(user);}
+
+    public List<User> validateLogin(LoginForm user)
+    {
+        return userRepository.findByForenameAndPassword(user.getUsername(),user.getPassword());
+    }
 }
