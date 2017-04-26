@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!--<meta charset="UTF-8">-->
+    <title>Search Users</title>
+</head>
+<body>
+
+<h3>Search Users</h3>
+
+<form th:action="@{user/search}" th:object="${searchCriteria}" method="post">
+    <p>Forename: <input type="text" th:field="*{forename}"/></p>
+    <p>Surname: <input type="text" th:field="${searchCriteria.surname}"/></p>
+    <p><input type="submit" value="Search"/></p>
+
+</form>
+
+</body>
+</html>
