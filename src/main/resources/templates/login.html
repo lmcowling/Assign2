@@ -9,13 +9,20 @@
 <h3>User Login</h3>
 
 <form action="#" th:action="@{/user/login}" th:object="${user}" method="post">
+<<<<<<< HEAD
     <!--<input type="hidden" th:field="*{id}" />-->
+=======
+>>>>>>> origin/search_branch
     <p>Username: </p><input type="text" th:field="*{username}"/>
     <p>Password: </p><input type="password" th:field="*{password}"/>
     <p></p><input type="submit" value="Login"/>
 </form>
 
 <div th:if="${message!=null}">
+<<<<<<< HEAD
+=======
+    <p/>
+>>>>>>> origin/search_branch
     <span th:text="${message}"/>
 </div>
 

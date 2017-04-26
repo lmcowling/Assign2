@@ -1,7 +1,6 @@
 package com.demo.spring.controller;
 
 import com.demo.spring.domain.LoginForm;
-import com.demo.spring.domain.SearchForm;
 import com.demo.spring.domain.User;
 import com.demo.spring.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +10,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
 
 /**
  * Created by web on 19/04/17.
@@ -22,7 +20,6 @@ public class UserController
 {
     @Autowired
     UserService userService;
-
 
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public String registerView(Model model)
@@ -64,22 +61,12 @@ public class UserController
             model.addAttribute("message", "Please fill in all sections of the form");
             return "login";
         }
-        if(userService.validateLogin(user)==false)
+        if(userService.validateLogin(user)==null || userService.validateLogin(user).size()==0)
         {
             model.addAttribute("user", user);
-            model.addAttribute("message", "Username and Password are inncorrect");
-            return "login";
+            model.addAttribute("message", "Username or Password are incorrect");
         }
         return "redirect:/";
-    }
-
-    @RequestMapping(value = "/search", method = RequestMethod.GET)
-    public String searchView(Model model, @ModelAttribute("searchCriteria") SearchForm searchForm)
-    {
-        List<User> users = userService.searchUsers(searchForm);
-        model.addAttribute("searchCriteria", searchForm);
-        model.addAttribute("users", users);
-        return "search";
     }
 
     @RequestMapping(value = "/update/{user}", method = RequestMethod.GET)
