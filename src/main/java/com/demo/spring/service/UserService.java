@@ -39,7 +39,10 @@ public class UserService
 
     public List<User> searchUsers(SearchForm user)
     {
+        if(user.getForename().isEmpty() && user.getSurname().isEmpty())
+        {
+            return userRepository.findAll();
+        }
         return userRepository.searchUsers(user.getForename(), user.getSurname());
-
     }
 }

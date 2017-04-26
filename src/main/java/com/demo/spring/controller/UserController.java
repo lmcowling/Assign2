@@ -11,6 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 /**
  * Created by web on 19/04/17.
@@ -72,15 +73,14 @@ public class UserController
         return "redirect:/";
     }
 
-
     @RequestMapping(value = "/search", method = RequestMethod.GET)
-    public String searchView(Model model)
+    public String searchView(Model model, @ModelAttribute("searchCriteria") SearchForm searchForm)
     {
-        SearchForm searchForm = new SearchForm();
+        List<User> users = userService.searchUsers(searchForm);
         model.addAttribute("searchCriteria", searchForm);
+        model.addAttribute("users", users);
         return "search";
     }
-
 
     @RequestMapping(value = "/update/{user}", method = RequestMethod.GET)
     public String updateView(Model model, @PathVariable User user)
