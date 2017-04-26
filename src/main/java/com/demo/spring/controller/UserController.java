@@ -21,7 +21,6 @@ public class UserController
     @Autowired
     UserService userService;
 
-
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public String registerView(Model model)
     {
