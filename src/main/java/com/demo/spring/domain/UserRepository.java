@@ -16,7 +16,7 @@ public interface UserRepository extends JpaRepository<User,Long>
     @Query("SELECT u FROM User u WHERE u.forename=?1 AND u.password=?2")
     List<User> checkUserInput(String username, String password);
 
-    @Query("SELECT u FROM User u WHERE u.forename LIKE ?1 AND u.surname LIKE ?2")
+    @Query("SELECT u FROM User u WHERE u.forename LIKE %?1% AND u.surname LIKE %?2%")
     List<User> searchUsers(String forename, String surname);
 }
 

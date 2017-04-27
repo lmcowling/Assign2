@@ -38,13 +38,6 @@ public class UserService
 
     public List<User> searchUsers(SearchForm user)
     {
-        if(user.getForename().isEmpty() && user.getSurname().isEmpty())
-        {
-            return userRepository.findAll();
-        }
-        else
-        {
-            return userRepository.searchUsers(user.getForename(), user.getSurname());
-        }
+        return userRepository.searchUsers(user.getForename(), user.getSurname());
     }
 }
