@@ -1,6 +1,7 @@
 package com.demo.spring.controller;
 
 import com.demo.spring.domain.LoginForm;
+import com.demo.spring.domain.SearchForm;
 import com.demo.spring.domain.User;
 import com.demo.spring.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 /**
  * Created by web on 19/04/17.
@@ -31,10 +33,8 @@ public class UserController
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
 //    @ResponseBody
-    public String register(Model model, @Valid @ModelAttribute("user") User user, BindingResult bindingResult)
-    {
-        if(bindingResult.hasErrors())
-        {
+    public String register(Model model, @Valid @ModelAttribute("user") User user, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
             model.addAttribute("user", user);
             model.addAttribute("message", "Please fill in all sections of the form");
             return "register";
@@ -61,12 +61,30 @@ public class UserController
             model.addAttribute("message", "Please fill in all sections of the form");
             return "login";
         }
-        if(userService.validateLogin(user)==null || userService.validateLogin(user).size()==0)
+        if(userService.validateLogin(user)==false)
         {
             model.addAttribute("user", user);
             model.addAttribute("message", "Username or Password are incorrect");
+            return "login";
         }
         return "redirect:/";
+    }
+
+    @RequestMapping(value = "/search", method = RequestMethod.GET)
+    public String searchView(Model model)
+    {
+        SearchForm searchForm = new SearchForm();
+        model.addAttribute("searchText", searchForm);
+        return "search";
+    }
+
+    @RequestMapping(value = "/search", method = RequestMethod.POST)
+    public String search(Model model, @ModelAttribute("searchText") SearchForm searchForm)
+    {
+        List<User> users = userService.searchUsers(searchForm);
+        model.addAttribute("searchText", searchForm);
+        model.addAttribute("users", users);
+        return "search";
     }
 
     @RequestMapping(value = "/update/{user}", method = RequestMethod.GET)

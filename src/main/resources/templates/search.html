@@ -8,17 +8,16 @@
 
 <h3>Search Users</h3>
 
-<form th:action="@{user/search}" th:object="${searchCriteria}" method="post">
+<form th:action="@{user/search}" th:object="${searchText}" method="post">
     <p>Forename: <input type="text" th:field="*{forename}"/></p>
-    <p>Surname: <input type="text" th:field="${searchCriteria.surname}"/></p>
+    <p>Surname: <input type="text" th:field="${searchText.surname}"/></p>
     <p><input type="submit" value="Search"/></p>
-
 </form>
 
 <div>
     <ol>
         <li th:each="user: ${users}">
-            <span th:text="${user.forename}+ ' '+${user.surname}"></span>
+            <span th:text="${user.forename}+' '+${user.surname}"></span>
         </li>
     </ol>
 </div>

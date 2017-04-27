@@ -10,6 +10,7 @@ import javax.persistence.Id;
 /**
  * Created by Liam on 19/04/17.
  */
+@Entity
 public class User
 {
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
@@ -21,6 +22,16 @@ public class User
     String surname;
     @NotEmpty
     String password;
+
+    public Long getId()
+    {
+        return id;
+    }
+
+    public void setId(Long id)
+    {
+        this.id = id;
+    }
 
     public String getForename()
     {
