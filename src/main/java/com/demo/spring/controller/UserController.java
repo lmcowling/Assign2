@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -53,7 +54,7 @@ public class UserController
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
 //    @ResponseBody
-    public String login(Model model, @Valid @ModelAttribute("user") LoginForm user, BindingResult bindingResult)
+    public String login(Model model, @Valid @ModelAttribute("user") LoginForm user, BindingResult bindingResult, HttpSession session)
     {
         if(bindingResult.hasErrors())
         {
@@ -67,9 +68,18 @@ public class UserController
             model.addAttribute("message", "Username or Password are incorrect");
             return "login";
         }
+
+        session.setAttribute("login", true);
+
         return "redirect:/";
     }
 
+    @RequestMapping(value = "/logout", method = RequestMethod.GET)
+    public String logout(Model model, HttpSession session)
+    {
+        session.removeAttribute("login");
+        return "redirect:/user/login";
+    }
     @RequestMapping(value = "/search", method = RequestMethod.GET)
     public String searchView(Model model)
     {
