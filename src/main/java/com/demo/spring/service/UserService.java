@@ -28,7 +28,10 @@ public class UserService
         return userRepository.findAll();
     }
 
-    public void delete(User user) {userRepository.delete(user);}
+    public void delete(User user)
+    {
+        userRepository.delete(user);
+    }
 
     public boolean validateLogin(LoginForm user)
     {

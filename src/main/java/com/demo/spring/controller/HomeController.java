@@ -1,6 +1,8 @@
 package com.demo.spring.controller;
 
+import com.demo.spring.domain.Film;
 import com.demo.spring.domain.User;
+import com.demo.spring.service.FilmService;
 import com.demo.spring.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,8 +24,10 @@ public class HomeController
     @Autowired
     UserService userService;
 
+    @Autowired
+    FilmService filmService;
+
     @RequestMapping(value = "/", method = RequestMethod.GET)
-//    @ResponseBody
     public String index(Model model, HttpSession session)
     {
         if(session.getAttribute("login")==null)
@@ -36,6 +40,22 @@ public class HomeController
         model.addAttribute("users", users);
 
         return "index";
+    }
+
+
+    @RequestMapping(value = "/film", method = RequestMethod.GET)
+    public String filmIndex(Model model, HttpSession session)
+    {
+        if(session.getAttribute("login")==null)
+        {
+            return "redirect:/user/login";
+        }
+
+        List<Film> films = filmService.findAll();
+
+        model.addAttribute("films", films);
+
+        return "indexFilm";
     }
 }
 

@@ -33,7 +33,6 @@ public class UserController
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-//    @ResponseBody
     public String register(Model model, @Valid @ModelAttribute("user") User user, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("user", user);
@@ -53,7 +52,6 @@ public class UserController
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-//    @ResponseBody
     public String login(Model model, @Valid @ModelAttribute("user") LoginForm user, BindingResult bindingResult, HttpSession session)
     {
         if(bindingResult.hasErrors())
@@ -80,6 +78,7 @@ public class UserController
         session.removeAttribute("login");
         return "redirect:/user/login";
     }
+
     @RequestMapping(value = "/search", method = RequestMethod.GET)
     public String searchView(Model model)
     {
@@ -116,7 +115,7 @@ public class UserController
 //    @ResponseBody
     public String delete(@PathVariable User user)
     {
-        String name = user.getForename()+" "+user.getSurname();
+//        String name = user.getForename()+" "+user.getSurname();
 
         userService.delete(user);
 
