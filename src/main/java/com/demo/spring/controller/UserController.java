@@ -29,7 +29,7 @@ public class UserController
     {
         User user = new User();
         model.addAttribute("user", user);
-        return "register";
+        return "user/register";
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
@@ -37,7 +37,7 @@ public class UserController
         if (bindingResult.hasErrors()) {
             model.addAttribute("user", user);
             model.addAttribute("message", "Please fill in all sections of the form");
-            return "register";
+            return "user/register";
         }
         userService.save(user);
         return "redirect:/";
@@ -48,7 +48,7 @@ public class UserController
     {
         LoginForm user = new LoginForm();
         model.addAttribute("user", user);
-        return "login";
+        return "user/login";
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
@@ -58,17 +58,15 @@ public class UserController
         {
             model.addAttribute("user", user);
             model.addAttribute("message", "Please fill in all sections of the form");
-            return "login";
+            return "user/login";
         }
         if(userService.validateLogin(user)==false)
         {
             model.addAttribute("user", user);
             model.addAttribute("message", "Username or Password are incorrect");
-            return "login";
+            return "user/login";
         }
-
         session.setAttribute("login", true);
-
         return "redirect:/";
     }
 
@@ -84,7 +82,7 @@ public class UserController
     {
         SearchForm searchForm = new SearchForm();
         model.addAttribute("searchText", searchForm);
-        return "search";
+        return "user/search";
     }
 
     @RequestMapping(value = "/search", method = RequestMethod.POST)
@@ -93,15 +91,14 @@ public class UserController
         List<User> users = userService.searchUsers(searchForm);
         model.addAttribute("searchText", searchForm);
         model.addAttribute("users", users);
-        return "search";
+        return "user/search";
     }
 
     @RequestMapping(value = "/update/{user}", method = RequestMethod.GET)
     public String updateView(Model model, @PathVariable User user)
     {
         model.addAttribute("user", user);
-
-        return "update";
+        return "user/update";
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
@@ -115,10 +112,7 @@ public class UserController
 //    @ResponseBody
     public String delete(@PathVariable User user)
     {
-//        String name = user.getForename()+" "+user.getSurname();
-
         userService.delete(user);
-
         return "redirect:/";
     }
 }

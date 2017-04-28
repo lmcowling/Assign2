@@ -1,9 +1,9 @@
 package com.demo.spring.domain;
 
 /**
- * Created by web on 27/04/17.
+ * Created by web on 28/04/17.
  */
-public class SearchFilmForm
+public class FilmForm
 {
     String title;
     String year;

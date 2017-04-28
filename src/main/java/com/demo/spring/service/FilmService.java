@@ -2,8 +2,8 @@ package com.demo.spring.service;
 
 
 import com.demo.spring.domain.Film;
+import com.demo.spring.domain.FilmForm;
 import com.demo.spring.domain.FilmRepository;
-import com.demo.spring.domain.SearchFilmForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,8 +33,8 @@ public class FilmService
         filmRepository.delete(film);
     }
 
-//    public List<Film> searchFilms(SearchFilmForm film)
-//    {
-//        return filmRepository.searchFilms(film.getTitle(), film.getYear());
-//    }
+    public List<Film> searchFilms(FilmForm film)
+    {
+        return filmRepository.searchFilms(film.getTitle(), film.getYear());
+    }
 }

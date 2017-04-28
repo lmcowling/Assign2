@@ -6,6 +6,8 @@
 </head>
 <body>
 
+<div th:include="fragments/header :: header"></div>
+
 <h3>Search Users</h3>
 
 <form th:action="@{/user/search}" th:object="${searchText}" method="post">

@@ -42,7 +42,6 @@ public class HomeController
         return "index";
     }
 
-
     @RequestMapping(value = "/film", method = RequestMethod.GET)
     public String filmIndex(Model model, HttpSession session)
     {
@@ -55,7 +54,7 @@ public class HomeController
 
         model.addAttribute("films", films);
 
-        return "indexFilm";
+        return "film/indexFilm";
     }
 }
 

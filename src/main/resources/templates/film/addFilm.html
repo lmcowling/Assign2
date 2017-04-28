@@ -6,6 +6,8 @@
 </head>
 <body>
 
+<div th:include="fragments/header :: header"></div>
+
 <h3>Add Film</h3>
 
 <form action="#" th:action="@{/film/addFilm}" th:object="${film}" method="post">

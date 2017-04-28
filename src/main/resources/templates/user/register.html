@@ -2,19 +2,26 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <!--<meta charset="UTF-8">-->
-    <title>User Update</title>
+    <title>User Registration</title>
 </head>
 <body>
 
-<h3>User Update</h3>
+<div th:include="fragments/header :: header"></div>
 
-<form action="#" th:action="@{/user/update}" th:object="${user}" method="post">
+<h3>User Registration</h3>
+
+<form action="#" th:action="@{/user/register}" th:object="${user}" method="post">
     <input type="hidden" th:field="*{id}" />
     <p>Forename: </p><input type="text" th:field="*{forename}"/>
     <p>Surname: </p><input type="text" th:field="*{surname}"/>
     <p>Password: </p><input type="text" th:field="*{password}"/>
-    <p></p><input type="submit" value="Update"/>
+    <p></p><input type="submit" value="Register"/>
 </form>
+
+<div th:if="${message!=null}">
+    <p/>
+    <span th:text="${message}"/>
+</div>
 
 </body>
 </html>

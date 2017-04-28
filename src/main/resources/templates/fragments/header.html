@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<div th:fragment="header">
+    <div>
+        <a th:href="@{/}">home</a>
+        <ul>
+            <li><a th:href="@{/user/register}">Register</a></li>
+            <li><a th:href="@{/user/search}">Search Users</a></li>
+            <li><a th:href="@{/film}">Films</a></li>
+            <li><a th:href="@{/film/searchFilm}">Search Films</a></li>
+            <li><a th:href="@{/film/addFilm}">Add Film</a></li>
+        </ul>
+    </div>
+</div>
+
+</html>
