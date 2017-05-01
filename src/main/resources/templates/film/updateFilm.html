@@ -8,15 +8,17 @@
 <body>
 
 <div th:include="fragments/header :: header"></div>
+<div class="content">
+    <div class="pageBody">
+        <h3>Update Film</h3>
 
-<h3>Update Film</h3>
-
-<form action="#" th:action="@{/film/updateFilm}" th:object="${film}" method="post">
-    <input type="hidden" th:field="*{id}" />
-    <p>Title: </p><input type="text" th:field="*{title}"/>
-    <p>Year: </p><input type="text" th:field="*{year}"/>
-    <p></p><input type="submit" value="Update"/>
-</form>
-
+        <form action="#" th:action="@{/film/updateFilm}" th:object="${film}" method="post">
+            <input type="hidden" th:field="*{id}" />
+            <p>Title: </p><input type="text" th:field="*{title}"/>
+            <p>Year: </p><input type="text" th:field="*{year}"/>
+            <p></p><input type="submit" value="Update"/>
+        </form>
+    </div>
+</div>
 </body>
 </html>

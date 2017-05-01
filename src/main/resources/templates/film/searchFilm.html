@@ -8,22 +8,24 @@
 <body>
 
 <div th:include="fragments/header :: header"></div>
+<div class="content">
+    <div class="pageBody">
+        <h3>Search Films</h3>
 
-<h3>Search Films</h3>
+        <form th:action="@{/film/searchFilm}" th:object="${searchText}" method="post">
+            <p>Title: <input type="text" th:field="*{title}"/></p>
+            <p>Year: <input type="text" th:field="${searchText.year}"/></p>
+            <p><input type="submit" value="Search"/></p>
+        </form>
 
-<form th:action="@{/film/searchFilm}" th:object="${searchText}" method="post">
-    <p>Title: <input type="text" th:field="*{title}"/></p>
-    <p>Year: <input type="text" th:field="${searchText.year}"/></p>
-    <p><input type="submit" value="Search"/></p>
-</form>
-
-<div>
-    <ol>
-        <li th:each="film: ${films}">
-            <span th:text="${film.title}+' '+${film.year}"></span>
-        </li>
-    </ol>
+        <div>
+            <ol>
+                <li th:each="film: ${films}">
+                    <span th:text="${film.title}+' '+${film.year}"></span>
+                </li>
+            </ol>
+        </div>
+    </div>
 </div>
-
 </body>
 </html>

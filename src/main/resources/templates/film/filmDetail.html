@@ -9,12 +9,14 @@
 
 <div th:include="fragments/header :: header"></div>
 
-
-<form action="#" th:action="@{/review/addReview/}+*{id}" th:object="${film}" method="post">
-    <h3 th:text="*{title}+' - '+*{year}"></h3>
-    <p></p><input type="submit" value="Add Review"/>
-</form>
-
+<div class="content">
+    <div class="pageBody">
+        <form action="#" th:action="@{/review/addReview/}+*{id}" th:object="${film}" method="post">
+            <h3 th:text="*{title}+' - '+*{year}"></h3>
+            <p></p><input type="submit" value="Add Review"/>
+        </form>
+    </div>
+</div>
 <!--list of reviews-->
 
 </body>

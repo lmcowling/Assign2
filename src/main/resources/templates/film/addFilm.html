@@ -10,18 +10,20 @@
 <div th:include="fragments/header :: header"></div>
 
 <h3>Add Film</h3>
+<div class="content">
+    <div class="pageBody">
+        <form action="#" th:action="@{/film/addFilm}" th:object="${film}" method="post">
+            <input type="hidden" th:field="*{id}" />
+            <p>Title: </p><input type="text" th:field="*{title}"/>
+            <p>Year: </p><input type="text" th:field="*{year}"/>
+            <p></p><input type="submit" value="Add"/>
+        </form>
 
-<form action="#" th:action="@{/film/addFilm}" th:object="${film}" method="post">
-    <input type="hidden" th:field="*{id}" />
-    <p>Title: </p><input type="text" th:field="*{title}"/>
-    <p>Year: </p><input type="text" th:field="*{year}"/>
-    <p></p><input type="submit" value="Add"/>
-</form>
-
-<div th:if="${message!=null}">
-    <p/>
-    <span th:text="${message}"/>
+        <div th:if="${message!=null}">
+            <p/>
+            <span th:text="${message}"/>
+        </div>
+    </div>
 </div>
-
 </body>
 </html>

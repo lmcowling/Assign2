@@ -10,20 +10,20 @@
 <div th:include="fragments/header :: header"></div>
 <div class="content">
     <div class="pageBody">
-     <table class="table">
-         <tr>
-             <th>Forename</th>
-             <th>Surname</th>
-             <th>Password</th>
-             <th>Update</th>
-              <th>Delete</th>
-         </tr>
-         <tr th:each="user : ${users}">
-             <td th:text="${user.forename}">Fin</td>
+        <table class="table">
+            <tr>
+                <th>Forename</th>
+                <th>Surname</th>
+                <th>Password</th>
+                <th>Update</th>
+                <th>Delete</th>
+            </tr>
+            <tr th:each="user : ${users}">
+                <td th:text="${user.forename}">Fin</td>
                 <td th:text="${user.surname}">Pickford</td>
                 <td th:text="${user.password}">password</td>
-             <td><a href="#" th:href="@{/user/update/}+${user.id}">update</a></td>
-             <td><a href="#" th:href="@{/user/delete/}+${user.id}">delete</a></td>
+                <td><a href="#" th:href="@{/user/update/}+${user.id}">update</a></td>
+                <td><a href="#" th:href="@{/user/delete/}+${user.id}">delete</a></td>
             </tr>
         </table>
     </div>

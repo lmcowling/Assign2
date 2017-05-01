@@ -8,21 +8,23 @@
 <body>
 
 <div th:include="fragments/header :: header"></div>
+<div class="content">
+    <div class="pageBody">
+        <h3>User Registration</h3>
 
-<h3>User Registration</h3>
+        <form action="#" th:action="@{/user/register}" th:object="${user}" method="post">
+            <input type="hidden" th:field="*{id}" />
+            <p>Forename: </p><input type="text" th:field="*{forename}"/>
+            <p>Surname: </p><input type="text" th:field="*{surname}"/>
+            <p>Password: </p><input type="text" th:field="*{password}"/>
+            <p></p><input type="submit" value="Register"/>
+        </form>
 
-<form action="#" th:action="@{/user/register}" th:object="${user}" method="post">
-    <input type="hidden" th:field="*{id}" />
-    <p>Forename: </p><input type="text" th:field="*{forename}"/>
-    <p>Surname: </p><input type="text" th:field="*{surname}"/>
-    <p>Password: </p><input type="text" th:field="*{password}"/>
-    <p></p><input type="submit" value="Register"/>
-</form>
-
-<div th:if="${message!=null}">
-    <p/>
-    <span th:text="${message}"/>
+        <div th:if="${message!=null}">
+            <p/>
+            <span th:text="${message}"/>
+        </div>
+    </div>
 </div>
-
 </body>
 </html>
