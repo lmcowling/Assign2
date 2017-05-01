@@ -79,7 +79,6 @@ public class FilmController
     }
 
     @RequestMapping(value = "/deleteFilm/{film}", method = RequestMethod.GET)
-//    @ResponseBody
     public String delete(@PathVariable Film film)
     {
         filmService.delete(film);
