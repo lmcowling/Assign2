@@ -14,12 +14,14 @@
         <th>Year</th>
         <th>Update</th>
         <th>Delete</th>
+        <th>Detail</th>
     </tr>
     <tr th:each="film : ${films}">
         <td th:text="${film.title}">Film</td>
         <td th:text="${film.year}">2017</td>
         <td><a href="#" th:href="@{/film/updateFilm/}+${film.id}">update</a></td>
         <td><a href="#" th:href="@{/film/deleteFilm/}+${film.id}">delete</a></td>
+        <td><a href="#" th:href="@{/film/filmDetail/}+${film.id}">detail</a></td>
     </tr>
 </table>
 

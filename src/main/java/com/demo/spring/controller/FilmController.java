@@ -84,4 +84,11 @@ public class FilmController
         filmService.delete(film);
         return "redirect:/film";
     }
+
+    @RequestMapping(value = "/filmDetail/{film}", method = RequestMethod.GET)
+    public String loadFilmDetail(Model model, @PathVariable Film film)
+    {
+        model.addAttribute("film", film);
+        return "film/filmDetail";
+    }
 }
