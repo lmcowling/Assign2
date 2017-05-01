@@ -10,17 +10,15 @@
 
 <h3>Add Review</h3>
 
-<!--<form action="#" th:action="@{/film/addFilm}" th:object="${film}" method="post">-->
-    <!--<input type="hidden" th:field="*{id}" />-->
-    <!--<p>Title: </p><input type="text" th:field="*{title}"/>-->
-    <!--<p>Year: </p><input type="text" th:field="*{year}"/>-->
-    <!--<p></p><input type="submit" value="Add"/>-->
-<!--</form>-->
+<form action="#" th:action="@{/review/addReview}" th:object="${review}" method="post">
+    <p>Review: </p><input type="text" th:field="*{reviewText}"/>
+    <p></p><input type="submit" value="Add Review"/>
+</form>
 
-<!--<div th:if="${message!=null}">-->
-    <!--<p/>-->
-    <!--<span th:text="${message}"/>-->
-<!--</div>-->
+<div th:if="${message!=null}">
+    <p/>
+    <span th:text="${message}"/>
+</div>
 
 </body>
 </html>

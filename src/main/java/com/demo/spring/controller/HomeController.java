@@ -42,6 +42,12 @@ public class HomeController
         return "index";
     }
 
+    @RequestMapping(value = "/location", method = RequestMethod.GET)
+    public String location(Model model)
+    {
+        return "location";
+    }
+
     @RequestMapping(value = "/film", method = RequestMethod.GET)
     public String filmIndex(Model model, HttpSession session)
     {

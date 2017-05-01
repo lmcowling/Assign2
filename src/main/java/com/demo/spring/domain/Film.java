@@ -2,10 +2,8 @@ package com.demo.spring.domain;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Set;
 
 /**
  * Created by Liam on 27/04/17.
@@ -20,6 +18,10 @@ public class Film
     String title;
     @NotEmpty
     String year;
+
+    @OneToMany(targetEntity = Review.class, mappedBy = "film", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    Set<Review> reviews;
+
 
     public Long getId()
     {

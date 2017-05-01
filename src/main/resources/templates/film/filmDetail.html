@@ -9,13 +9,12 @@
 <div th:include="fragments/header :: header"></div>
 
 
-
-
-<form action="#" th:action="@{/review/addReview}" th:object="${film}" method="post">
+<form action="#" th:action="@{/review/addReview/}+*{id}" th:object="${film}" method="post">
     <h3 th:text="*{title}+' - '+*{year}"></h3>
-    <input type="hidden" th:field="*{id}" />
-    <a href="#" th:href="@{/review/addReview/}+*{id}">add Review</a>
+    <p></p><input type="submit" value="Add Review"/>
 </form>
+
+<!--list of reviews-->
 
 </body>
 </html>
