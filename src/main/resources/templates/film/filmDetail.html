@@ -21,7 +21,11 @@
     <form action="#" th:action="@{/review/addReview/}+${film.id}" method="get">
         <p></p><input type="submit" value="Add Review"/>
     </form>
+    <div class="pageBody">
+        <li th:each="review : ${film.reviews}">
+            <a href="#" th:href="@{/review/viewReview/}+${review.id}" th:text="${review.reviewText}"></a>
+        </li>
+    </div>
 </div>
-<!--list of reviews-->
 </body>
 </html>
