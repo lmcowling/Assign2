@@ -9,25 +9,21 @@
 
 <div th:include="fragments/header :: header"></div>
 <div class="content">
+    <div class="pageTitle">
+        <h3>Film Index</h3>
+    </div>
     <div class="pageBody">
         <table>
             <tr>
-                <th>Title</th>
-                <th>Year</th>
-                <th>Update</th>
-                <th>Delete</th>
-                <th>Detail</th>
+                <th>Film Title</th>
             </tr>
             <tr th:each="film : ${films}">
-                <td th:text="${film.title}">Film</td>
-                <td th:text="${film.year}">2017</td>
-                <td><a href="#" th:href="@{/film/updateFilm/}+${film.id}">update</a></td>
-                <td><a href="#" th:href="@{/film/deleteFilm/}+${film.id}">delete</a></td>
-                <td><a href="#" th:href="@{/film/filmDetail/}+${film.id}">detail</a></td>
+                <td>
+                    <a href="#" th:href="@{/film/filmDetail/}+${film.id}" th:text="${film.title}"></a>
+                </td>
             </tr>
         </table>
     </div>
 </div>
-
 </body>
 </html>

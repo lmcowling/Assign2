@@ -22,13 +22,10 @@ public class ReviewController
     @Autowired
     ReviewService reviewService;
 
-    @RequestMapping(value = "/addReview/{film}", method = RequestMethod.POST)
+    @RequestMapping(value = "/addReview/{film}", method = RequestMethod.GET)
     public String addReview(Model model, @PathVariable Film film)
     {
         model.addAttribute("film", film);
         return "review/addReview";
     }
-
-
-
 }

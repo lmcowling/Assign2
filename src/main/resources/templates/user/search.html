@@ -9,15 +9,15 @@
 
 <div th:include="fragments/header :: header"></div>
 <div class="content">
-    <div class="pageBody">
+    <div class="pageTitle">
         <h3>Search Users</h3>
-
+    </div>
+    <div class="pageBody">
         <form th:action="@{/user/search}" th:object="${searchText}" method="post">
             <p>Forename: <input type="text" th:field="*{forename}"/></p>
             <p>Surname: <input type="text" th:field="${searchText.surname}"/></p>
             <p><input type="submit" value="Search"/></p>
         </form>
-
         <div>
             <ol>
                 <li th:each="user: ${users}">

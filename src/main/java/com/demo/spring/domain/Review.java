@@ -5,21 +5,36 @@ import org.hibernate.validator.constraints.NotEmpty;
 import javax.persistence.*;
 
 /**
- * Created by web on 28/04/17.
+ * Created by Liam on 28/04/17.
  */
+
 @Entity
 public class Review
 {
-    @Id @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
 
     @NotEmpty
     String reviewText;
 
-    @ManyToOne
-    @JoinColumn(name = "film_id")
-    Film film;
+    private Film film;
 
+    public Review()
+    {
+
+    }
+
+    public Review(String reviewText)
+    {
+        this.reviewText = reviewText;
+    }
+
+    public Review(String reviewText, Film film)
+    {
+        this.reviewText = reviewText;
+        this.film = film;
+    }
+
+    @Id @GeneratedValue(strategy = GenerationType.AUTO)
     public Long getId() {
         return id;
     }
@@ -36,6 +51,8 @@ public class Review
         this.reviewText = reviewText;
     }
 
+    @ManyToOne
+    @JoinColumn(name = "film_id")
     public Film getFilm() {
         return film;
     }

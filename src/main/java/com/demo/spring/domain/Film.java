@@ -1,6 +1,7 @@
 package com.demo.spring.domain;
 
-import org.hibernate.validator.constraints.NotEmpty;
+import
+        org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -11,18 +12,27 @@ import java.util.Set;
 @Entity
 public class Film
 {
-    @Id @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
 
     @NotEmpty
     String title;
+
     @NotEmpty
     String year;
 
-    @OneToMany(targetEntity = Review.class, mappedBy = "film", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    Set<Review> reviews;
+    private Set<Review> reviews;
 
+    public Film()
+    {
 
+    }
+
+    public Film(String title)
+    {
+        this.title = title;
+    }
+
+    @Id @GeneratedValue(strategy = GenerationType.AUTO)
     public Long getId()
     {
         return id;
@@ -51,5 +61,16 @@ public class Film
     public void setYear(String year)
     {
         this.year = year;
+    }
+
+    @OneToMany(mappedBy = "film", cascade = CascadeType.ALL)
+    public Set<Review> getReviews()
+    {
+        return reviews;
+    }
+
+    public void setReviews(Set<Review> reviews)
+    {
+        this.reviews = reviews;
     }
 }

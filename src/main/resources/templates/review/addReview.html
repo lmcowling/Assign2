@@ -9,18 +9,18 @@
 
 <div th:include="fragments/header :: header"></div>
 <div class="content">
-    <div class="pageBody">
+    <div class="pageTitle">
         <h3>Add Review</h3>
-
-        <form action="#" th:action="@{/review/addReview}" th:object="${review}" method="post">
-            <p>Review: </p><input type="text" th:field="*{reviewText}"/>
-            <p></p><input type="submit" value="Add Review"/>
-        </form>
-
-        <div th:if="${message!=null}">
-            <p/>
-            <span th:text="${message}"/>
-        </div>
+    </div>
+    <div class="pageBody">
+        <!--<form action="#" th:action="@{/review/addReview}" th:object="${review}" method="post">-->
+            <!--<p>Review: </p><input type="text" th:field="*{reviewText}"/>-->
+            <!--<p></p><input type="submit" value="Add Review"/>-->
+        <!--</form>-->
+        <!--<div th:if="${message!=null}">-->
+            <!--<p/>-->
+            <!--<span th:text="${message}"/>-->
+        <!--</div>-->
     </div>
 </div>
 </body>
