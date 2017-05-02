@@ -18,7 +18,7 @@
             <p><a href="#" th:href="@{/film/deleteFilm/}+${film.id}">delete</a></p>
         </div>
     </div>
-    <form action="#" th:action="@{/review/addReview/}+*{film.id}" method="get">
+    <form action="#" th:action="@{/review/addReview/}+${film.id}" method="get">
         <p></p><input type="submit" value="Add Review"/>
     </form>
 </div>

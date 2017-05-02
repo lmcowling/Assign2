@@ -23,9 +23,19 @@ public class ReviewController
     ReviewService reviewService;
 
     @RequestMapping(value = "/addReview/{film}", method = RequestMethod.GET)
-    public String addReview(Model model, @PathVariable Film film)
+    public String addReviewView(Model model, @PathVariable Film film)
     {
-        model.addAttribute("film", film);
+        Review review = new Review();
+        review.setFilm(film);
+        model.addAttribute("review", review);
         return "review/addReview";
     }
+
+    @RequestMapping(value = "/addReview", method = RequestMethod.POST)
+    public String addFilmReview(Model model, @ModelAttribute("review") Review review)
+    {
+        reviewService.save(review);
+        return "redirect:/film";
+    }
+
 }

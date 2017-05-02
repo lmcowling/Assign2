@@ -1,7 +1,5 @@
 package com.demo.spring.domain;
-
 import org.hibernate.validator.constraints.NotEmpty;
-
 import javax.persistence.*;
 
 /**
@@ -34,8 +32,10 @@ public class Review
         this.film = film;
     }
 
-    @Id @GeneratedValue(strategy = GenerationType.AUTO)
-    public Long getId() {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    public Long getId()
+    {
         return id;
     }
 
