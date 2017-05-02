@@ -22,9 +22,15 @@
         <p></p><input type="submit" value="Add Review"/>
     </form>
     <div class="pageBody">
-        <li th:each="review : ${film.reviews}">
-            <a href="#" th:href="@{/review/viewReview/}+${review.id}" th:text="${review.reviewText}"></a>
-        </li>
+        <table class="table">
+            <tr>
+                <th>Reviews:</th>
+            </tr>
+            <tr th:each="review : ${film.reviews}">
+                <td th:text="${review.reviewText}"></td>
+                <td><a href="#" th:href="@{/review/deleteReview/}+${review.id}">delete</a></td>
+            </tr>
+        </table>
     </div>
 </div>
 </body>

@@ -38,4 +38,12 @@ public class ReviewController
         return "redirect:/film";
     }
 
+    @RequestMapping(value = "/deleteReview/{review}", method = RequestMethod.GET)
+    public String delete(@PathVariable Review review)
+    {
+        reviewService.delete(review);
+        return "redirect:/film";
+    }
+
+
 }
