@@ -27,7 +27,7 @@ public class HomeController
     @Autowired
     FilmService filmService;
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @RequestMapping(value = "/", method = RequestMethod.GET) //loads the home page
     public String index(Model model, HttpSession session)
     {
         if(session.getAttribute("login")==null)
@@ -42,13 +42,13 @@ public class HomeController
         return "index";
     }
 
-    @RequestMapping(value = "/location", method = RequestMethod.GET)
+    @RequestMapping(value = "/location", method = RequestMethod.GET) //loads the location page
     public String location(Model model)
     {
         return "location";
     }
 
-    @RequestMapping(value = "/film", method = RequestMethod.GET)
+    @RequestMapping(value = "/film", method = RequestMethod.GET) //loads the film index.
     public String filmIndex(Model model, HttpSession session)
     {
         if(session.getAttribute("login")==null)

@@ -24,7 +24,7 @@ public class UserController
     @Autowired
     UserService userService;
 
-    @RequestMapping(value = "/register", method = RequestMethod.GET)
+    @RequestMapping(value = "/register", method = RequestMethod.GET) //loads the register view
     public String registerView(Model model)
     {
         User user = new User();
@@ -32,7 +32,7 @@ public class UserController
         return "user/register";
     }
 
-    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    @RequestMapping(value = "/register", method = RequestMethod.POST) //adds the user
     public String register(Model model, @Valid @ModelAttribute("user") User user, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("user", user);
@@ -43,7 +43,7 @@ public class UserController
         return "redirect:/";
     }
 
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    @RequestMapping(value = "/login", method = RequestMethod.GET) //loads the login form view
     public String loginView(Model model)
     {
         LoginForm user = new LoginForm();
@@ -51,7 +51,7 @@ public class UserController
         return "user/login";
     }
 
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    @RequestMapping(value = "/login", method = RequestMethod.POST) //logs the user in and creates a session
     public String login(Model model, @Valid @ModelAttribute("user") LoginForm user, BindingResult bindingResult, HttpSession session)
     {
         if(bindingResult.hasErrors())
@@ -70,14 +70,14 @@ public class UserController
         return "redirect:/";
     }
 
-    @RequestMapping(value = "/logout", method = RequestMethod.GET)
+    @RequestMapping(value = "/logout", method = RequestMethod.GET) //logs the user out
     public String logout(Model model, HttpSession session)
     {
         session.removeAttribute("login");
         return "redirect:/user/login";
     }
 
-    @RequestMapping(value = "/search", method = RequestMethod.GET)
+    @RequestMapping(value = "/search", method = RequestMethod.GET) //loads the user search view
     public String searchView(Model model)
     {
         SearchForm searchForm = new SearchForm();
@@ -85,7 +85,7 @@ public class UserController
         return "user/search";
     }
 
-    @RequestMapping(value = "/search", method = RequestMethod.POST)
+    @RequestMapping(value = "/search", method = RequestMethod.POST) // loads the user search view with the search results
     public String search(Model model, @ModelAttribute("searchText") SearchForm searchForm)
     {
         List<User> users = userService.searchUsers(searchForm);
@@ -94,21 +94,21 @@ public class UserController
         return "user/search";
     }
 
-    @RequestMapping(value = "/update/{user}", method = RequestMethod.GET)
+    @RequestMapping(value = "/update/{user}", method = RequestMethod.GET) //loads the user updates view
     public String updateView(Model model, @PathVariable User user)
     {
         model.addAttribute("user", user);
         return "user/update";
     }
 
-    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    @RequestMapping(value = "/update", method = RequestMethod.POST) //updates the user table
     public String update(@ModelAttribute("user") User user)
     {
         userService.save(user);
         return "redirect:/";
     }
 
-    @RequestMapping(value = "/delete/{user}", method = RequestMethod.GET)
+    @RequestMapping(value = "/delete/{user}", method = RequestMethod.GET) //deletes the user
 //    @ResponseBody
     public String delete(@PathVariable User user)
     {

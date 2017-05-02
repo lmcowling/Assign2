@@ -26,7 +26,7 @@ public class FilmController
     @Autowired
     FilmService filmService;
 
-    @RequestMapping(value = "/addFilm", method = RequestMethod.GET)
+    @RequestMapping(value = "/addFilm", method = RequestMethod.GET) //loads the addFilm view
     public String addView(Model model)
     {
         Film film = new Film();
@@ -34,7 +34,7 @@ public class FilmController
         return "film/addFilm";
     }
 
-    @RequestMapping(value = "/addFilm", method = RequestMethod.POST)
+    @RequestMapping(value = "/addFilm", method = RequestMethod.POST) //adds a new film
     public String add(Model model, @Valid @ModelAttribute("film") Film film, BindingResult bindingResult)
     {
         if (bindingResult.hasErrors())
@@ -47,7 +47,7 @@ public class FilmController
         return "redirect:/film";
     }
 
-    @RequestMapping(value = "/searchFilm", method = RequestMethod.GET)
+    @RequestMapping(value = "/searchFilm", method = RequestMethod.GET) //loads the film search view
     public String searchView(Model model)
     {
         FilmForm filmForm = new FilmForm();
@@ -55,7 +55,7 @@ public class FilmController
         return "film/searchFilm";
     }
 
-    @RequestMapping(value = "/searchFilm", method = RequestMethod.POST)
+    @RequestMapping(value = "/searchFilm", method = RequestMethod.POST) //loads the film search view with the results
     public String search(Model model, @ModelAttribute("searchText") FilmForm filmForm)
     {
         List<Film> films = filmService.searchFilms(filmForm);
@@ -64,28 +64,28 @@ public class FilmController
         return "film/searchFilm";
     }
 
-    @RequestMapping(value = "/updateFilm/{film}", method = RequestMethod.GET)
+    @RequestMapping(value = "/updateFilm/{film}", method = RequestMethod.GET) //loads the film update form view
     public String updateFilmView(Model model, @PathVariable Film film)
     {
         model.addAttribute("film", film);
         return "film/updateFilm";
     }
 
-    @RequestMapping(value = "/updateFilm", method = RequestMethod.POST)
+    @RequestMapping(value = "/updateFilm", method = RequestMethod.POST) //updates the film and
     public String updateFilm(@ModelAttribute("film") Film film)
     {
         filmService.save(film);
         return "redirect:/film";
     }
 
-    @RequestMapping(value = "/deleteFilm/{film}", method = RequestMethod.GET)
+    @RequestMapping(value = "/deleteFilm/{film}", method = RequestMethod.GET) //delete selected film
     public String delete(@PathVariable Film film)
     {
         filmService.delete(film);
         return "redirect:/film";
     }
 
-    @RequestMapping(value = "/filmDetail/{film}", method = RequestMethod.GET)
+    @RequestMapping(value = "/filmDetail/{film}", method = RequestMethod.GET) //loads the details page of the films.
     public String loadFilmDetail(Model model, @PathVariable Film film)
     {
         model.addAttribute("film", film);

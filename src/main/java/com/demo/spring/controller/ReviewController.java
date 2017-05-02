@@ -22,7 +22,7 @@ public class ReviewController
     @Autowired
     ReviewService reviewService;
 
-    @RequestMapping(value = "/addReview/{film}", method = RequestMethod.GET)
+    @RequestMapping(value = "/addReview/{film}", method = RequestMethod.GET) //loads the add review view
     public String addReviewView(Model model, @PathVariable Film film)
     {
         Review review = new Review();
@@ -31,14 +31,14 @@ public class ReviewController
         return "review/addReview";
     }
 
-    @RequestMapping(value = "/addReview", method = RequestMethod.POST)
+    @RequestMapping(value = "/addReview", method = RequestMethod.POST) //adds a review connected to the film
     public String addFilmReview(Model model, @ModelAttribute("review") Review review)
     {
         reviewService.save(review);
         return "redirect:/film";
     }
 
-    @RequestMapping(value = "/deleteReview/{review}", method = RequestMethod.GET)
+    @RequestMapping(value = "/deleteReview/{review}", method = RequestMethod.GET) //deletes the review
     public String delete(@PathVariable Review review)
     {
         reviewService.delete(review);
